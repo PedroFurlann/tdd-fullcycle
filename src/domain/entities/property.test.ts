@@ -1,5 +1,7 @@
 import { DateRange } from "../value_objects/date_range";
+import { Booking } from "./booking";
 import { Property } from "./property";
+import { User } from "./user";
 
 describe("Property Entity", () => {
   it("deve criar uma instância de Property com todos os atributos", () => {
@@ -56,7 +58,7 @@ describe("Property Entity", () => {
 
     const totalPrice = property.calculateTotalPrice(dateRange);
 
-    expect(totalPrice).toBe(1200)
+    expect(totalPrice).toBe(1200);
   });
 
   it("deve aplicar desconto de 10% para estadias de 7 noites ou mais", () => {
@@ -69,6 +71,26 @@ describe("Property Entity", () => {
 
     const totalPrice = property.calculateTotalPrice(dateRange);
 
-    expect(totalPrice).toBe(1260)
+    expect(totalPrice).toBe(1260);
+  });
+
+  it("deve verificar disponibilidade da propriedade", () => {
+    const property = new Property("1", "Casa", "Descrição", 5, 200);
+    const guest = new User("1", "Pedro Furlan");
+
+    const startDate = new Date("2024-12-20");
+    const endDate = new Date("2024-12-25");
+
+    const dateRange = new DateRange(startDate, endDate);
+
+    const startDate2 = new Date("2024-12-22");
+    const endDate2 = new Date("2024-12-27");
+
+    const dateRange2 = new DateRange(startDate2, endDate2);
+
+    new Booking("1", property, guest, dateRange, 2);
+
+    expect(property.isAvailable(dateRange)).toBe(false);
+    expect(property.isAvailable(dateRange2)).toBe(false);
   });
 });

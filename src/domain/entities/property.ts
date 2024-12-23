@@ -1,6 +1,9 @@
 import { DateRange } from "../value_objects/date_range";
+import { Booking } from "./booking";
 
 export class Property {
+  private readonly bookings: Booking[] = [];
+
   constructor(
     private id: string,
     private name: string,
@@ -69,9 +72,21 @@ export class Property {
     let totalPrice = this.basePricePerNight * totalNights;
 
     if (totalNights >= 7) {
-      totalPrice *= 0.9
+      totalPrice *= 0.9;
     }
 
     return totalPrice;
+  }
+
+  isAvailable(dateRange: DateRange): boolean {
+    return !this.bookings.some(
+      (booking) =>
+        booking.getStatus() === "CONFIRMED" &&
+        booking.getDateRange().overlaps(dateRange)
+    );
+  }
+
+  addBooking(booking: Booking): void {
+    this.bookings.push(booking);
   }
 }
