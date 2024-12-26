@@ -1,6 +1,6 @@
 import { UserService } from "./user_service";
-import { FakeUserRepository } from "../infrastructure/repositories/fake_user_repostory";
-import { User } from "../domain/entities/user";
+import { FakeUserRepository } from "../../infrastructure/repositories/fake_user_repostory";
+import { User } from "../../domain/entities/user";
 
 describe("User Service", () => {
   let userService: UserService;
