@@ -17,7 +17,7 @@ describe("User Service", () => {
     expect(user).toBeNull();
   });
 
-  it("deve retornar um usuário quando um ID váilido for fornecido", async () => {
+  it("deve retornar um usuário quando um ID valido for fornecido", async () => {
     const user = await userService.findUserById("1");
 
     expect(user).not.toBeNull();
