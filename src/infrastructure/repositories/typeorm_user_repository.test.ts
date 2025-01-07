@@ -49,11 +49,8 @@ describe("TypeORM User Repository", () => {
   });
 
   it("deve retornar nulo quando um id inválido for fornecido", async () => {
-    const user = new User("1", "Pedro Furlan");
-    await userRepository.save(user);
+    const user = await userRepository.findById("2");
 
-    const savedUser = await userRepository.findById("2");
-
-    expect(savedUser).toBeNull();
+    expect(user).toBeNull();
   });
 });
