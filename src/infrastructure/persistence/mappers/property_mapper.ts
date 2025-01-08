@@ -3,13 +3,13 @@ import { PropertyEntity } from "../entities/property_entity";
 
 export class PropertyMapper {
   static toPersistence(domain: Property): PropertyEntity {
-    return {
-      id: domain.getId(),
-      name: domain.getName(),
-      description: domain.getDescription(),
-      maxGuests: domain.getMaxGuests(),
-      basePricePerNight: domain.getBasePricePerNight()
-    };
+    const entity = new PropertyEntity();
+    entity.id = domain.getId();
+    entity.name = domain.getName();
+    entity.description = domain.getDescription();
+    entity.maxGuests = domain.getMaxGuests();
+    entity.basePricePerNight = domain.getBasePricePerNight();
+    return entity;
   }
 
   static toDomain(entity: PropertyEntity): Property {

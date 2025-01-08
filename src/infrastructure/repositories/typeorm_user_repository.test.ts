@@ -2,6 +2,8 @@ import { DataSource, Repository } from "typeorm";
 import { User } from "../../domain/entities/user";
 import { UserEntity } from "../../infrastructure/persistence/entities/user_entity";
 import { TypeORMUserRepository } from "../../infrastructure/repositories/typeorm_user_repository";
+import { PropertyEntity } from "../persistence/entities/property_entity";
+import { BookingEntity } from "../persistence/entities/booking_entity";
 
 describe("TypeORM User Repository", () => {
   let dataSource: DataSource;
@@ -13,7 +15,7 @@ describe("TypeORM User Repository", () => {
       type: "sqlite",
       database: ":memory:",
       dropSchema: true,
-      entities: [UserEntity],
+      entities: [UserEntity, PropertyEntity, BookingEntity],
       synchronize: true,
       logging: false,
     });
