@@ -46,6 +46,10 @@ export class BookingService {
   async cancelBooking(bookingId: string): Promise<void> {
     const booking = await this.bookingRepository.findById(bookingId);
 
+    if (!booking) {
+      throw new Error("Booking not found.");
+    }
+
     booking?.cancel(new Date());
 
     await this.bookingRepository.save(booking!);
