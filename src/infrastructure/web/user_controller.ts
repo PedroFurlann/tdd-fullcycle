@@ -11,6 +11,10 @@ export class UserController {
 
   async createUser(req: Request, res: Response): Promise<Response> {
     try {
+      if(!req.body.name) {
+        return res.status(400).json({ message: "O campo nome é obrigatório." });
+      }
+
       const userDTO: CreateUserDTO = {
         name: req.body.name,
       };
