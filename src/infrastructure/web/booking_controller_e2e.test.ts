@@ -173,6 +173,6 @@ describe("Booking Controller", () => {
     const response = await request(app).post("/bookings/2/cancel");
 
     expect(response.status).toBe(400);
-    expect(response.body.message).toBe("Booking not found.");
+    expect(response.body.message).toBe("Reserva não encontrada.");
   });
 });

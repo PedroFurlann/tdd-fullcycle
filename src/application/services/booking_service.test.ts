@@ -184,7 +184,7 @@ describe("Booking Service", () => {
     const bookingId = "invalid-id"
 
     await expect(bookingService.cancelBooking(bookingId)).rejects.toThrow(
-      "Booking not found."
+      "Reserva não encontrada."
     );
   });
 });
