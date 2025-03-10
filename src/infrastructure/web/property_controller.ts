@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { CreatePropertyDTO } from "../../application/DTOs/create_property_dto";
-import { PropertyRepository } from "../../domain/repositories/property_repository";
-import { Property } from "../../domain/entities/property";
 import { PropertyService } from "../../application/services/property_service";
 
 export class PropertyController {
